@@ -12,6 +12,7 @@ import task from "./routers/task.js";
 const app = express();
 
 dotenv.config();
+app.options("*", cors()); // preflight for all routes
 
 app.use(cors({
     origin: "https://task-tracker-app-steel.vercel.app/",
