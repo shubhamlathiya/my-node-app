@@ -38,6 +38,19 @@ project.post("/", authMiddleware, async (req, res) => {
     }
 });
 
+project.put("/:id", async (req, res) => {
+    try {
+        const project = await Project.findByIdAndUpdate(
+            req.params.id,
+            { title: req.body.title },
+            { new: true }
+        );
+        if (!project) return res.status(404).json({ message: "Project not found" });
+        res.json({ project });
+    } catch (err) {
+        res.status(500).json({ message: "Error updating project", error: err.message });
+    }
+});
 
 project.delete("/:id", authMiddleware, async (req, res) => {
     try {

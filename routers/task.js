@@ -31,6 +31,21 @@ task.post("/", authMiddleware, async (req, res) => {
     }
 });
 
+task.put("/:id", async (req, res) => {
+    try {
+        const task = await Task.findByIdAndUpdate(
+            req.params.id,
+            { title: req.body.title },
+            { new: true }
+        );
+        if (!task) return res.status(404).json({ message: "Task not found" });
+        res.json({ task });
+    } catch (err) {
+        res.status(500).json({ message: "Error updating task", error: err.message });
+    }
+});
+
+
 task.delete("/:id", authMiddleware, async (req, res) => {
     try {
         const task = await Task.findOneAndDelete({ _id: req.params.id, user: req.userId });
