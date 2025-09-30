@@ -1,12 +1,9 @@
-const latInput = document.getElementById('lat-input');
-const lonInput = document.getElementById('lon-input');
 const fetchBtn = document.getElementById('fetch-btn');
 const weatherList = document.getElementById('weather-list');
 const loading = document.getElementById('loading');
 
 const API_KEY = '831dabb6-9dc2-11f0-b07a-0242ac130006-831dac1a-9dc2-11f0-b07a-0242ac130006';
 const BASE_URL = 'https://api.stormglass.io/v2/weather/point';
-
 
 async function fetchWeather(lat, lon) {
     loading.style.display = 'block';
@@ -22,7 +19,6 @@ async function fetchWeather(lat, lon) {
         if (!response.ok) throw new Error('Failed to fetch weather data');
 
         const data = await response.json();
-
         const current = data.hours[0];
 
         displayWeather(current);
@@ -48,14 +44,26 @@ function displayWeather(current) {
     });
 }
 
-fetchBtn.addEventListener('click', () => {
-    const lat = latInput.value.trim();
-    const lon = lonInput.value.trim();
-
-    if (!lat || !lon) {
-        alert('Please enter both latitude and longitude');
-        return;
+// Automatically get user's location
+function getUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                fetchWeather(lat, lon);
+            },
+            (error) => {
+                alert('Unable to retrieve your location. Please enter manually.');
+            }
+        );
+    } else {
+        alert('Geolocation is not supported by your browser.');
     }
+}
 
-    fetchWeather(lat, lon);
-});
+// On page load, automatically fetch weather
+window.addEventListener('load', getUserLocation);
+
+// Optional: you can still keep the button for manual refresh
+fetchBtn.addEventListener('click', getUserLocation);
