@@ -21,15 +21,29 @@ auth.post('/signup', async (req, res) => {
 });
 
 
-auth.post('/login', async (req, res) => {
-    await connectDB(); // connect to MongoDB
-    const { email } = req.body;
-    console.log(req.body);
-    const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ error: 'User not found' });
+// auth.post('/login', async (req, res) => {
+//     await connectDB(); // connect to MongoDB
+//     const { email } = req.body;
+//     console.log(req.body);
+//     const user = await User.findOne({ email });
+//     if (!user) return res.status(400).json({ error: 'User not found' });
+//
+//     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+//     res.json({ token });
+// });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    res.json({ token });
+auth.post("/login", async (req, res) => {
+    try {
+        await connectDB(); // cached connection
+        const { email, password } = req.body;
+        const user = await User.findOne({ email });
+        if (!user) return res.status(400).json({ error: "User not found" });
+        // generate JWT...
+        res.json({ token: "dummy" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" });
+    }
 });
 
 export default auth;

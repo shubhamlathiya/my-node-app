@@ -1,4 +1,3 @@
-// db.js
 import mongoose from "mongoose";
 
 let cached = global.mongoose;
@@ -7,13 +6,13 @@ if (!cached) cached = global.mongoose = { conn: null, promise: null };
 
 async function connectDB() {
     if (cached.conn) return cached.conn;
-
+    mongoose.set("debug", true);
     if (!cached.promise) {
         cached.promise = mongoose.connect(process.env.MONGO_URI, {
-            bufferCommands: false,
             useNewUrlParser: true,
-            useUnifiedTopology: true
-        }).then(mongoose => mongoose);
+            useUnifiedTopology: true,
+            bufferCommands: false, // disable mongoose buffering
+        }).then((mongoose) => mongoose);
     }
 
     cached.conn = await cached.promise;
