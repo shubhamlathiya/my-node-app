@@ -14,6 +14,16 @@ project.get("/", authMiddleware, async (req, res) => {
 });
 
 
+project.get("/all", async (req, res) => {
+    try {
+        const projects = await Project.find();
+        res.json({ success: true, projects });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+});
+
+
 project.post("/", authMiddleware, async (req, res) => {
     try {
         const { title } = req.body;

@@ -11,7 +11,6 @@ function readNotes() {
     return JSON.parse(data);
 }
 
-
 function writeNotes(notes) {
     fs.writeFileSync(NOTES_FILE, JSON.stringify(notes, null, 2));
 }
@@ -53,6 +52,5 @@ notes.delete('/notes/:id', (req, res) => {
     writeNotes(filteredNotes);
     res.json({message: 'Note deleted successfully'});
 });
-
 
 export default notes;

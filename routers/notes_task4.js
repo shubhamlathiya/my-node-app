@@ -1,12 +1,7 @@
 import express from 'express';
 import Note from "../models/Note.js";
 
-
-
-
 const notes_task4 = express();
-
-
 
 notes_task4.post('/notes', async (req, res) => {
     try {

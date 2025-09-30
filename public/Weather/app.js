@@ -44,7 +44,6 @@ function displayWeather(current) {
     });
 }
 
-// Automatically get user's location
 function getUserLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -62,8 +61,6 @@ function getUserLocation() {
     }
 }
 
-// On page load, automatically fetch weather
 window.addEventListener('load', getUserLocation);
 
-// Optional: you can still keep the button for manual refresh
 fetchBtn.addEventListener('click', getUserLocation);

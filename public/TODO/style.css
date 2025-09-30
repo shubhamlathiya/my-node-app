@@ -1,4 +1,4 @@
-/* Reset */
+
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +6,6 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Body */
 body {
     display: flex;
     justify-content: center;
@@ -15,7 +14,6 @@ body {
     background: #f0f4f8;
 }
 
-/* Container */
 .container {
     background: #fff;
     padding: 30px 25px;
@@ -25,14 +23,12 @@ body {
     max-width: 400px;
 }
 
-/* Heading */
 h1 {
     text-align: center;
     margin-bottom: 20px;
     color: #111827;
 }
 
-/* Form */
 form {
     display: flex;
     gap: 10px;
@@ -56,7 +52,6 @@ input[type="text"]:focus {
     border-color: #3b82f6;
 }
 
-/* Button */
 button {
     padding: 10px 16px;
     background-color: #3b82f6;
@@ -72,7 +67,6 @@ button:hover {
     background-color: #2563eb;
 }
 
-/* TODO List */
 #todo-list {
     list-style: none;
 }
@@ -93,7 +87,6 @@ button:hover {
     background: #e0f2fe;
 }
 
-/* Buttons inside list items */
 #todo-list li button {
     margin-left: 5px;
     padding: 6px 10px;

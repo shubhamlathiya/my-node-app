@@ -32,18 +32,5 @@ auth.post('/login', async (req, res) => {
     res.json({ token });
 });
 
-// auth.post("/login", async (req, res) => {
-//     try {
-//         await connectDB(); // cached connection
-//         const { email, password } = req.body;
-//         const user = await User.findOne({ email });
-//         if (!user) return res.status(400).json({ error: "User not found" });
-//         // generate JWT...
-//         res.json({ token: "dummy" });
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).json({ error: "Server error" });
-//     }
-// });
 
 export default auth;
