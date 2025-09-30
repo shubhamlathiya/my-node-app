@@ -3,7 +3,7 @@ import cors from 'cors';
 import express from "express";
 import notes_task4 from "./routers/notes_task4.js";
 import user from "./routers/user.js";
-import {connectDB} from "./db.js";
+import connectDB from "./db.js";
 import dotenv from "dotenv";
 import auth from "./routers/auth.js";
 import project from "./routers/projects.js";
