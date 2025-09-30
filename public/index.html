@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My First Page</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f0f0f0;
+        }
+
+        h1 {
+            color: blue;
+            text-align: center;
+        }
+
+        p {
+            color: gray;
+        }
+
+        button:hover {
+            background: green;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<h1>Hello, World!</h1>
+<p>This is a paragraph.</p>
+<h1>Styled Page</h1>
+<p>This is styled with CSS.</p>
+<button>Click me</button>
+<a href="https://google.com">Go to Google</a>
+
+<h1 id="title">Hello</h1>
+<button onclick="changeText()">Click Me</button>
+
+<script>
+    function changeText() {
+        document.getElementById("title").innerText = "You clicked the button!";
+    }
+
+    const myPromises = new Promise((resolve, reject) => {
+        let success = true;
+        if (success) {
+            resolve("Task Overs");
+        } else {
+            reject("Something went wrong");
+        }
+    });
+
+    myPromises.then(result => {
+        console.log(result);
+    }).catch(error => {
+        console.log(error);
+    })
+
+
+    const p1 = Promise.resolve("One");
+    const p2 = new Promise(res => setTimeout(() => res("Two"), 2000));
+    const p3 = Promise.resolve("Three");
+
+    Promise.all([p1, p2, p3]).then(values => console.log(values));
+
+    Promise.race([p1, p2, p3]).then(value => console.log(value));
+
+
+    let arr = [1, 2, 3, 4, 5];
+
+    let doubled = arr.map(x => x * 2);
+    console.log(doubled)
+
+    let even = arr.filter(x => x % 2 === 0);
+    console.log(even)
+
+    let sum = arr.reduce((a, b) => a + b, 0);
+    console.log(sum)
+
+    let obj = {name: "Alice", age: 25};
+    console.log(Object.keys(obj));
+
+</script>
+</body>
+</html>
