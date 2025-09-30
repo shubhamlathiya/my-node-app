@@ -13,7 +13,11 @@ const app = express();
 
 dotenv.config();
 
-app.use(cors());
+app.use(cors({
+    origin: "https://task-tracker-app-steel.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // if you use cookies
+}));
 
 app.use(express.json());
 
