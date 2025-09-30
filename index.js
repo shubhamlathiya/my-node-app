@@ -14,9 +14,9 @@ const app = express();
 dotenv.config();
 
 app.use(cors({
-    origin: "https://task-tracker-app-steel.vercel.app",
+    origin: "https://task-tracker-app-steel.vercel.app/",
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // if you use cookies
+    credentials: true, // if using cookies
 }));
 
 app.use(express.json());
