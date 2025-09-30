@@ -12,18 +12,13 @@ import task from "./routers/task.js";
 const app = express();
 
 dotenv.config();
-app.options("*", cors()); // preflight for all routes
-
-app.use(cors({
-    origin: "https://task-tracker-app-steel.vercel.app/",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // if using cookies
-}));
 
 app.use(express.json());
 
-connectDB();
-
+app.use(cors({
+    origin: ["https://task-tracker-app-steel.vercel.app", "http://localhost:3001"],
+    credentials: true
+}));
 const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
